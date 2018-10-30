@@ -1,0 +1,17 @@
+url: https://github.com/imagina/asgardcms-iperformers
+versions:
+    "0.1.0":
+        added:
+        -Migration Performer, Type, performer_type
+        -Translate Performer, Type
+        changed:
+
+        removed:
+"0.1.1":
+        added:
+        -Migration Performer, Type, performer_type
+        -Translate Performer, Type
+        changed:
+
+        removed:
+

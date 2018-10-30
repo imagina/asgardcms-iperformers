@@ -1,0 +1,19 @@
+{
+    "name": "Iperformers",
+    "alias": "iperformers",
+    "description": "",
+    "keywords": [],
+    "version": "dev",
+    "active": 1,
+    "order": 1,
+    "providers": [
+        "Modules\\Iperformers\\Providers\\IperformersServiceProvider",
+        "Modules\\Iperformers\\Providers\\RouteServiceProvider",
+        "Modules\\Iperformers\\Providers\\EventServiceProvider"
+    ],
+    "aliases": {},
+    "files": [
+        "helpers.php"
+    ],
+    "requires": []
+}
