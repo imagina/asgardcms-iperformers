@@ -3,7 +3,7 @@
     "alias": "iperformers",
     "description": "",
     "keywords": [],
-    "version": "dev",
+    "version": "0.1.0",
     "active": 1,
     "order": 1,
     "providers": [
