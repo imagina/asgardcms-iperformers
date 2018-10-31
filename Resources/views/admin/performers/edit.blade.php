@@ -13,8 +13,9 @@
 @stop
 
 @section('content')
-    {!! Form::open(['route' => ['admin.iperformers.performer.update', $performer->id], 'method' => 'put']) !!}
     <div class="row">
+        {!! Form::open(['route' => ['admin.iperformers.performer.update', $performer->id], 'method' => 'put']) !!}
+
         <div class="col-xs-12 col-md-9">
             <div class="row">
                 <div class="col-xs-12">
@@ -203,6 +204,25 @@
                                             class="fa fa-minus"></i>
                                 </button>
                             </div>
+                            <label>Adicionales</label>
+                        </div>
+                        <div class="box-body">
+                            <div class='form-group{{ $errors->has("options.videos") ? ' has-error' : '' }}'>
+                                {!! Form::label("options[videos]", trans('iperformers::performers.form.videos')) !!}
+                                {!! Form::textarea("options[videos]", old("options.videos"), ['class' => 'form-control','rows'=>2, 'placeholder' => trans('iperformers::performers.form.videos')]) !!}
+                                {!! $errors->first("options.videos", '<span class="help-block">:message</span>') !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 ">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                </button>
+                            </div>
                             <label>User</label>
                         </div>
                         <div class="box-body">
@@ -219,8 +239,11 @@
 
             </div>
         </div>
-    </div>
     {!! Form::close() !!}
+
+        @include('iperformers::admin.fields.gallery',['entry'=>$prefromer??'','field'=>['name'=>'gallery', 'label'=>trans('iplaces::places.form.gallery'),'route_upload'=>route('iplace.api.places.gallery.store'),'route_delete'=>route('iplace.api.places.gallery.delete'),'folder'=>'assets/iplaces/place/gallery/','label_drag'=>trans('iplaces::places.form.drag')]])
+    </div>
+
 @stop
 
 @section('footer')

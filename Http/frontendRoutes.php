@@ -4,7 +4,7 @@ use Illuminate\Routing\Router;
 
 /** @var Router $router */
 
-$router->group(['prefix' => 'lugares'], function (Router $router) {
+$router->group(['prefix' => 'artistas'], function (Router $router) {
 
     $router->get('/', [
         'as' => 'iperformers.performer.index',

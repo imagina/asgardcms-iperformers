@@ -39,7 +39,7 @@ class PublicController extends BasePublicController
             $filter=['types'=>$request->types,"services"=>$request->services, "genres"=>$request->genres];
 
             $performers = $this->performer->wherebyFilter($request->page,$take=12, json_decode(json_encode($filter)), $include=null);
-            $oldCat=$request->types;
+            $oldTyp=$request->types;
             $oldServ=$request->services;
             $oldGenre=$request->genres;
         } else {

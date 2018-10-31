@@ -23,7 +23,6 @@ class CreateIperformersPerformersTable extends Migration
             $table->integer('type_id')->unsigned();
             $table->integer('genre_id')->unsigned();
             $table->integer('service_id')->unsigned();
-            $table->text('address');
             $table->foreign('user_id')->references('id')->on(config('auth.table', 'users'))->onDelete('restrict');
             // Your fields
             $table->timestamps();

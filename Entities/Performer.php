@@ -19,7 +19,7 @@ class Performer extends Model
 
     protected $table = 'iperformers__performers';
     public $translatedAttributes = ['title','description','slug','metatitle','metadescription','metakeywords'];
-    protected $fillable = ['title','description','slug','user_id','status','summary','address','options','type_id','created_at','metatitle','metadescription','metakeywords','genre_id','city_id','service_id'];
+    protected $fillable = ['title','description','slug','user_id','status','summary','options','type_id','created_at','metatitle','metadescription','metakeywords','genre_id','city_id','service_id'];
     protected $fakeColumns = ['options'];
     protected $presenter = PerformerPresenter::class;
 

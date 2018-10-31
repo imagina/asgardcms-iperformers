@@ -27,7 +27,7 @@
                 </div>
                 <label>{{ trans('iperformers::common.form.metadata')}}</label>
             </div>
-            <div class="panel-collapse collapse" id="aditional{{$lang}}">
+            <div class="panel-collapse collapse in" id="aditional{{$lang}}">
                 <div class="box-body">
                     <div class='form-group{{ $errors->has("{$lang}.metatitle") ? ' has-error' : '' }}'>
                         {!! Form::label("{$lang}[metatitle]", trans('iperformers::performers.form.metatitle')) !!}
