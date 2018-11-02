@@ -1,25 +1,15 @@
-
+@if(isset($performer->options->video)&& !empty($performer->options->video))
 <div class="gallery-video mb-4">
     <p class="text-primary sub-title">Video</p>
     <div class="owl-carousel owl-theme">
         <div class="item">
             <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="item">
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="item">
-            <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+                <iframe class="embed-responsive-item" src="{{$performer->options->video??''}}" allowfullscreen></iframe>
             </div>
         </div>
     </div>
 </div>
-
+@endif
 
 @section('scripts')
     <script>
@@ -43,7 +33,7 @@
                         items: 1
                     },
                     992: {
-                        items: 2
+                        items: 1
                     }
                 }
             });

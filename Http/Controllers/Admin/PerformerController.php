@@ -82,10 +82,9 @@ class PerformerController extends AdminBaseController
      */
     public function store(CreatePerformerRequest $request)
     {
+
         try {
-
-
-            $this->performer->create($request->all());
+             $this->performer->create($request->all());
 
             return redirect()->route('admin.iperformers.performer.index')
                 ->withSuccess(trans('core::core.messages.resource created', ['name' => trans('iperformers::performers.title.performers')]));
@@ -165,4 +164,44 @@ class PerformerController extends AdminBaseController
         }
 
     }
+
+    public function galleryStore(Request $request)
+    {
+        $original_filename = $request->file('file')->getClientOriginalName();
+
+        $idperformer = $request->input('idedit');
+        $extension = $request->file('file')->getClientOriginalExtension();
+        $allowedextensions = array('JPG', 'JPEG', 'PNG', 'GIF');
+
+        if (!in_array(strtoupper($extension), $allowedextensions)) {
+            return 0;
+        }
+        $disk = 'publicmedia';
+        $image = \Image::make($request->file('file'));
+        $name = str_slug(str_replace('.' . $extension, '', $original_filename), '-');
+
+
+        $image->resize(config('asgard.performers.config.imagesize.width'), config('asgard.iperformers.config.imagesize.height'), function ($constraint) {
+            $constraint->upsize();
+        });
+
+        if (config('asgard.iperformers.config.watermark.activated')) {
+            $image->insert(config('asgard.iperformers.config.watermark.url'), config('asgard.iperformers.config.watermark.position'), config('asgard.iperformers.config.watermark.x'), config('asgard.iperformers.config.watermark.y'));
+        }
+        $nameimag = $name . '.' . $extension;
+        $destination_path = 'assets/iperformers/performer/gallery/' . $idperformer . '/' . $nameimag;
+
+        \Storage::disk($disk)->put($destination_path, $image->stream($extension, '100'));
+
+        return array('direccion' => $destination_path);
+    }
+
+    public function galleryDelete(Request $request)
+    {
+        $disk = "publicmedia";
+        $dirdata = $request->input('dirdata');
+        \Storage::disk($disk)->delete($dirdata);
+        return array('success' => true);
+    }
+    
 }

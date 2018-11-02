@@ -37,7 +37,7 @@
                     </div>
                     <div class='form-group{{ $errors->has("{$lang}.metakeywords") ? ' has-error' : '' }}'>
                         {!! Form::label("{$lang}[metakeywords]", trans('iperformers::performers.form.metakeywords')) !!}
-                        <?php $old = $performer->hasTranslation($lang) ? $performer->translate($lang)->metatitle : '' ?>
+                        <?php $old = $performer->hasTranslation($lang) ? $performer->translate($lang)->metakeywords : '' ?>
                         {!! Form::text("{$lang}[metakeywords]", old("{$lang}.metakeywords", $old), ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('iperformers::performers.form.metakeywords')]) !!}
                         {!! $errors->first("{$lang}.metakeywords", '<span class="help-block">:message</span>') !!}
                     </div>

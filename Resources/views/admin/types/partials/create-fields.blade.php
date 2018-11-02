@@ -1,21 +1,21 @@
 <div class="box-body">
     <div class='form-group{{ $errors->has("{$lang}.title") ? ' has-error' : '' }}'>
-        {!! Form::label("{$lang}[title]", trans('iperformers::type.form.title')) !!}
-        {!! Form::text("{$lang}[title]", old("{$lang}.title"), ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('iperformers::type.form.title')]) !!}
+        {!! Form::label("{$lang}[title]", trans('iperformers::types.form.title')) !!}
+        {!! Form::text("{$lang}[title]", old("{$lang}.title"), ['class' => 'form-control', 'data-slug' => 'source', 'placeholder' => trans('iperformers::types.form.title')]) !!}
         {!! $errors->first("{$lang}.title", '<span class="help-block">:message</span>') !!}
     </div>
     <div class='form-group{{ $errors->has("{$lang}.slug") ? ' has-error' : '' }}'>
-        {!! Form::label("{$lang}[slug]", trans('iperformers::type.form.slug')) !!}
-        {!! Form::text("{$lang}[slug]", old("{$lang}.slug"), ['class' => 'form-control slug', 'data-slug' => 'target', 'placeholder' => trans('iperformers::type.form.slug')]) !!}
+        {!! Form::label("{$lang}[slug]", trans('iperformers::types.form.slug')) !!}
+        {!! Form::text("{$lang}[slug]", old("{$lang}.slug"), ['class' => 'form-control slug', 'data-slug' => 'target', 'placeholder' => trans('iperformers::types.form.slug')]) !!}
         {!! $errors->first("{$lang}.slug", '<span class="help-block">:message</span>') !!}
     </div>
     <div class='form-group{{ $errors->has("$lang.summary") ? ' has-error' : '' }}'>
-        {!! Form::label("{$lang}[summary]", trans('iperformers::type.form.summary')) !!}
-        {!! Form::textarea("{$lang}[summary]", old("$lang.summary"), ['class' => 'form-control','rows'=>2, 'placeholder' => trans('iperformers::type.form.summary')]) !!}
+        {!! Form::label("{$lang}[summary]", trans('iperformers::types.form.summary')) !!}
+        {!! Form::textarea("{$lang}[summary]", old("$lang.summary"), ['class' => 'form-control','rows'=>2, 'placeholder' => trans('iperformers::types.form.summary')]) !!}
         {!! $errors->first("$lang.summary", '<span class="help-block">:message</span>') !!}
     </div>
     <div class='form-group{{ $errors->has("$lang.description") ? ' has-error' : '' }}'>
-    @editor('description', trans('iperformers::type.form.description'), old("{$lang}.description"), $lang)
+    @editor('description', trans('iperformers::types.form.description'), old("{$lang}.description"), $lang)
     </div>
     <div class="col-xs-12" style="padding-top: 35px;">
         <div class="panel box box-primary">

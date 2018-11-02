@@ -27,6 +27,7 @@ return [
         'description'=>'Description',
         'status'=>'Status',
         'slug'=>'Slug',
+        'summary'=>'Summary',
         'content'=>'Content',
         'metatitle'=>'MetaTitle',
         'metakeywords'=>'Metakeywords'

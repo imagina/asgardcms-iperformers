@@ -33,7 +33,10 @@ return [
         'metatitle'=>'MetaTitle',
         'metadescription'=>'MetaDescription',
         'metakeywords'=>'Metakeywords',
-        'metadata'=>'Meta Data'
+        'metadata'=>'Meta Data',
+        'drag'=>'Drag',
+        'label_click'=>'upload Files',
+        'gallery'=>'Gallery'
 
     ],
     'messages' => [

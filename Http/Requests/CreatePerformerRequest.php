@@ -8,18 +8,13 @@ class CreatePerformerRequest extends BaseFormRequest
 {
     public function rules()
     {
-        return [
-            'type_id'=>'required',
-            'address'=>'required'
-        ];
+        return [];
     }
 
     public function translationRules()
     {
         return [
-            'title'=>'required:min2',
-            'description'=>'required:min2',
-
+            'title'=>'required:min2'
         ];
     }
 

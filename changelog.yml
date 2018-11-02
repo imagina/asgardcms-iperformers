@@ -1,5 +1,10 @@
 url: https://github.com/imagina/asgardcms-iperformers
 versions:
+     "0.1.2":
+            added:
+             - routes backend Gallery
+            changed:
+             - View an controler function Gallery
     "0.1.1":
         added:
          - View gallery

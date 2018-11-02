@@ -16,12 +16,17 @@ class SavePerformerImage
     {
         $id = $event->entity->id;
         if (!empty($event->data['mainimage'])) {
-            dd('hola');
             $mainimage = saveImage($event->data['mainimage'], "assets/iperformers/performer/" . $id . ".jpg");
             if(isset($event->data['options'])){
                 $options=(array)$event->data['options'];
             }else{$options = array();}
             $options["mainimage"] = $mainimage;
+            if (!empty($event->data['gallery']) && !empty($id)) {
+                if (count(\Storage::disk('publicmedia')->files('assets/iperformers/performer/gallery/' . $event->data['gallery']))) {
+                    \File::makeDirectory('assets/iperformers/performer/gallery/' . $id);
+                    $success = rename('assets/iperformers/performer/gallery/' . $event->data['gallery'], 'assets/iperformers/performer/gallery/' . $id);
+                }
+            }
             $event->data['options'] = json_encode($options);
         }else{
             $event->data['options'] = json_encode($event->data['options']);

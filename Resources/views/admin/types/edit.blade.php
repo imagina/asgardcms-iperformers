@@ -2,7 +2,7 @@
 
 @section('content-header')
     <h1>
-        {{ trans('iperformers::types.title.edit type') }}
+        {{ trans('iperformers::types.title.edit types') }}
     </h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> {{ trans('core::core.breadcrumb.home') }}</a></li>

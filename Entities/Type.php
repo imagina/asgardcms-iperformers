@@ -84,13 +84,13 @@ class Type extends Model
     public function getMediumimageAttribute()
     {
 
-        return str_reperformer('.jpg', '_mediumThumb.jpg', $this->options->mainimage ?? 'modules/iperformers/img/default.jpg');
+        return str_replace('.jpg', '_mediumThumb.jpg', $this->options->mainimage ?? 'modules/iperformers/img/default.jpg');
     }
 
     public function getThumbailsAttribute()
     {
 
-        return str_reperformer('.jpg', '_smallThumb.jpg', $this->options->mainimage ?? 'modules/iperformers/img/default.jpg');
+        return str_replace('.jpg', '_smallThumb.jpg', $this->options->mainimage ?? 'modules/iperformers/img/default.jpg');
     }
 
 

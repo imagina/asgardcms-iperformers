@@ -44,7 +44,7 @@ class IperformersServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishConfig('iperformers', 'permissions');
-
+        $this->publishConfig('iperformers', 'config');
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
     }
 

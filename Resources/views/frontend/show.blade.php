@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('meta')
-@include('iperformers::frontend.metadatashow)
+@include('iperformers::frontend.metadatashow')
 @stop
 
 @section('title')
@@ -45,7 +45,7 @@
                             <h1 class="mb-4"><strong class="text-primary">Nombre:</strong> {{$performer->title}}</h1>
 
                             <div class="img-artist mb-4">
-                                <img class="img-fluid w-100" src="{{ Theme::url('img/artista.jpg') }}"
+                                <img class="img-fluid w-100" src="{{ $performer->mainimage }}"
                                      alt="Card image cap">
                             </div>
 
@@ -66,7 +66,7 @@
                                         </div>
                                         <div class="col">
                                             <p class="sub-title my-0 text-primary">Tipo</p>
-                                            <p>{{$performer->type??''}}</p>
+                                            <p>{{$performer->type->title??''}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -78,10 +78,10 @@
                             </div>
 
                             <!-- gallery image -->
-                        @include('iplaces::frontend.partials.image')
+                        @include('iperformers::frontend.partials.image')
 
                         <!-- gallery video -->
-                            @include('iplaces::frontend.partials.video')
+                            @include('iperformers::frontend.partials.video')
 
                             <div class="bg-light p-4 text-center">
                                 <h2 class="mb-3">¿QUIÉRES CONTACTAR ESTE ARTISTA?</h2>
@@ -92,11 +92,11 @@
 
                     </div>
                     <div class="col-md-5 col-lg-4">
-                        @include('iplaces::frontend.partials.filters')
+                        @include('iperformers::frontend.partials.filters')
                         <ul class="list-group ml-0 ml-lg-5 mb-5 list-featured">
                             <li class="list-group-item bg-dark text-white">Artistas Destacados</li>
                             <!-- owl vertical -->
-                            @include('iplaces::frontend.partials.featured')
+                            @include('iperformers::frontend.partials.featured')
                         </ul>
                     </div>
                 </div>

@@ -127,7 +127,7 @@
                             <label for="cities"><strong>{{trans('iperformers::genres.form.principal')}}</strong></label>
                             <select class="form-control" name="city_id" id="city_id">
                                 @foreach ($cities as $city)
-                                    <option value="{{$city->id}}" {{ old('city_id', $performer->city_id ) == $city->id ? 'selected' : '' }}> {{$city->name}}
+                                    <option value="{{$city->id}}" {{ old('city_id', $performer->city_id ) == $city->id ? 'selected' : '' }}> {{$city->translate('en')->name}}
                                     </option>
                                 @endforeach
                             </select><br>
@@ -208,8 +208,9 @@
                         </div>
                         <div class="box-body">
                             <div class='form-group{{ $errors->has("options.videos") ? ' has-error' : '' }}'>
+                                <?php $oldVideo = $performer->options->videos ? $performer->options->videos : '' ?>
                                 {!! Form::label("options[videos]", trans('iperformers::performers.form.videos')) !!}
-                                {!! Form::textarea("options[videos]", old("options.videos"), ['class' => 'form-control','rows'=>2, 'placeholder' => trans('iperformers::performers.form.videos')]) !!}
+                                {!! Form::textarea("options[videos]", old("options.videos",$oldVideo), ['class' => 'form-control','rows'=>2, 'placeholder' => trans('iperformers::performers.form.videos')]) !!}
                                 {!! $errors->first("options.videos", '<span class="help-block">:message</span>') !!}
                             </div>
                         </div>
@@ -239,9 +240,10 @@
 
             </div>
         </div>
+        @stack('left_fields')
     {!! Form::close() !!}
 
-        @include('iperformers::admin.fields.gallery',['entry'=>$prefromer??'','field'=>['name'=>'gallery', 'label'=>trans('iplaces::places.form.gallery'),'route_upload'=>route('iplace.api.places.gallery.store'),'route_delete'=>route('iplace.api.places.gallery.delete'),'folder'=>'assets/iplaces/place/gallery/','label_drag'=>trans('iplaces::places.form.drag')]])
+        @include('iperformers::admin.fields.gallery',['entity'=>$performer ??'','field'=>['name'=>'gallery', 'label'=>trans('iperformers::performers.form.gallery'),'route_upload'=>route('iperformers.performers.gallery.store'),'route_delete'=>route('iperformers.performers.gallery.delete'),'folder'=>'assets/iperformers/performer/gallery/','label_drag'=>trans('iperformers::performers.form.drag')]])
     </div>
 
 @stop

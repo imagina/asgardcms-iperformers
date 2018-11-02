@@ -1,11 +1,11 @@
 <!-- field_type_name -->
-@if(empty($entry->id))
+@if(empty($entity->id))
     <?php $rand = str_random(5);?>
     @push('left_fields')
         <input type="hidden" id="{{$field['name']}}" name="{{$field['name']}}" value="{{$rand}}">
     @endpush
 @else
-    <?php $rand = $entry->id;?>
+    <?php $rand = $entity->id;?>
 
 @endif
 

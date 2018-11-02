@@ -84,12 +84,13 @@ class PublicController extends BasePublicController
        if($performer->type->id ==$type->id){
            $services = $this->service->all();
            $genres = $this->genre->all();
+           $types = $this->type->all();
            $tpl = 'iperformers::frontend.show';
            $ttpl = 'iperformers.frontend.show';
 
            if (view()->exists($ttpl)) $tpl = $ttpl;
 
-           Return view($tpl, compact('performers', 'type', 'genres', 'services'));
+           Return view($tpl, compact('performer', 'types', 'genres', 'services'));
        }
 
        return abort(404);

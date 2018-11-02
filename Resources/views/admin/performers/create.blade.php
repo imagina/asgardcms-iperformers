@@ -243,8 +243,7 @@
         </div>
         @stack('left_fields')
     {!! Form::close() !!}
-
-        @include('iperformers::admin.fields.gallery',['entry'=>$prefromer??'','field'=>['name'=>'gallery', 'label'=>trans('iplaces::places.form.gallery'),'route_upload'=>route('iplace.api.places.gallery.store'),'route_delete'=>route('iplace.api.places.gallery.delete'),'folder'=>'assets/iplaces/place/gallery/','label_drag'=>trans('iplaces::places.form.drag')]])
+        @include('iperformers::admin.fields.gallery',['entry'=>$performer ?? '','field'=>['name'=>'gallery', 'label'=>trans('iperformers::performers.form.gallery'),'route_upload'=>route('iperformers.performers.gallery.store'),'route_delete'=>route('iperformers.performers.gallery.delete'),'folder'=>'assets/iperformers/performer/gallery/','label_drag'=>trans('iperformers::performers.form.drag')]])
     </div>
 
 @stop

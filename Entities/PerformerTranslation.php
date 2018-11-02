@@ -7,11 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class PerformerTranslation extends Model
 {
     public $timestamps = false;
-    protected $fillable = ['title','summary','description','slug','metatitle','metadescription','metakeywords'];
+    protected $fillable = ['title','summary','slug','description','metatitle','metadescription','metakeywords'];
     protected $table = 'iperformers__performer_translations';
 
-    protected function setSummaryAttribute($value){
-
+   protected function setSummaryAttribute($value){
         if(!empty($value)){
             $this->attributes['summary'] = $value;
         } else {
@@ -39,4 +38,5 @@ class PerformerTranslation extends Model
         }
 
     }
+
 }

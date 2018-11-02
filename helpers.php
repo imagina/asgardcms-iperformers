@@ -56,12 +56,12 @@ if (!function_exists('saveImage')) {
 
             // Save Thumbs
             \Storage::disk($disk)->put(
-                str_reperformer('.jpg', '_mediumThumb.jpg', $destination_path),
+                str_replace('.jpg', '_mediumThumb.jpg', $destination_path),
                 $image->fit($size->mediumthumbsize->width, $size->mediumthumbsize->height)->stream('jpg', $size->mediumthumbsize->quality)
             );
 
             \Storage::disk($disk)->put(
-                str_reperformer('.jpg', '_smallThumb.jpg', $destination_path),
+                str_replace('.jpg', '_smallThumb.jpg', $destination_path),
                 $image->fit($size->smallthumbsize->width, $size->smallthumbsize->height)->stream('jpg', $size->smallthumbsize->quality)
             );
 

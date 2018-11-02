@@ -18,7 +18,7 @@ class Performer extends Model
     use Translatable, PresentableTrait, NamespacedEntity;
 
     protected $table = 'iperformers__performers';
-    public $translatedAttributes = ['title','description','slug','metatitle','metadescription','metakeywords'];
+    public $translatedAttributes = ['title','description','slug','summary','metatitle','metadescription','metakeywords'];
     protected $fillable = ['title','description','slug','user_id','status','summary','options','type_id','created_at','metatitle','metadescription','metakeywords','genre_id','city_id','service_id'];
     protected $fakeColumns = ['options'];
     protected $presenter = PerformerPresenter::class;
@@ -34,15 +34,6 @@ class Performer extends Model
      * RELATIONS
      * --------
      */
-    protected function setSlugAttribute($value){
-
-        if(!empty($value)){
-            $this->attributes['slug'] = str_slug($value,'-');
-        }else{
-            $this->attributes['slug'] = str_slug($this->attributes['title'],'-');
-        }
-
-    }
 
     public function user()
     {
@@ -91,11 +82,11 @@ class Performer extends Model
     }
     public function getMediumimageAttribute(){
 
-        return url(str_reperformer('.jpg','_mediumThumb.jpg',$this->options->mainimage ?? 'modules/iperformers/img/default.jpg'));
+        return url(str_replace('.jpg','_mediumThumb.jpg',$this->options->mainimage ?? 'modules/iperformers/img/default.jpg'));
     }
     public function getThumbailsAttribute(){
 
-        return url(str_reperformer('.jpg','_smallThumb.jpg',$this->options->mainimage?? 'modules/iperformers/img/default.jpg'));
+        return url(str_replace('.jpg','_smallThumb.jpg',$this->options->mainimage?? 'modules/iperformers/img/default.jpg'));
     }
     public function getMetatitleAttribute(){
 
@@ -106,6 +97,11 @@ class Performer extends Model
     public function getMetadescriptionAttribute(){
 
         return $this->metadescription ?? substr(strip_tags($this->description),0,150);
+    }
+    public function getGalleryAttribute(){
+
+        $images = \Storage::disk('publicmedia')->files('assets/iperformers/performer/gallery/' . $this->id);
+        return $images;
     }
 
 

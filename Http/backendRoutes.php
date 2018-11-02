@@ -41,6 +41,16 @@ $router->group(['prefix' => 'iperformers'], function (Router $router) {
             'uses' => 'PerformerController@destroy',
             'middleware' => 'can:iperformers.performers.destroy'
         ]);
+        $router->post('gallery', [
+            'as' => 'iperformers.performers.gallery.store',
+            'uses' => 'PerformerController@galleryStore',
+            //'middleware' => ['api.token','token-can:iperformers.performers.create']
+        ]);
+        $router->post('gallery/delete', [
+            'as' => 'iperformers.performers.gallery.delete',
+            'uses' => 'PerformerController@galleryDelete',
+           // 'middleware' => ['api.token','token-can:iperformers.performers.create']
+        ]);
     });
 
     $router->group(['prefix' => 'types'], function (Router $router) {

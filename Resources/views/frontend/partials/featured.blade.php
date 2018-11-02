@@ -1,3 +1,5 @@
+{{--
+
 <div class="gallery-featured mb-4">
     <div class="owl-carousel owl-theme">
         <div class="item">
@@ -101,3 +103,4 @@
     @parent
 
 @stop
+--}}

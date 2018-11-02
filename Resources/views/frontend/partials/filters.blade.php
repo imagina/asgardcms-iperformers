@@ -1,4 +1,4 @@
-<form id="filter" method="get" action="{{route('iplaces.place.index')}}">
+<form id="filter" method="get" action="{{route('iperformers.performer.index')}}">
 
     <ul class="list-group list-group-flush ml-0 ml-lg-5 mb-5">
         <li class="list-group-item d-flex justify-content-between align-items-center rounded active"
@@ -20,7 +20,7 @@
                         <div class="custom-control custom-checkbox">
                             <input type="checkbox" class="custom-control-input" name="genres[]"
                                    id="customCheckz{{$genre->id}}" value="{{$genre->id}}"
-                                   @isset($oldZone) @if(in_array($genre->id, $oldZone)) checked="checked" @endif @endisset>
+                                   @isset($oldGenre) @if(in_array($genre->id, $oldGenre)) checked="checked" @endif @endisset>
                             <label class="custom-control-label text-capitalize"
                                    for="customCheckz{{$genre->id}}">{{$genre->title}}</label>
                         </div>

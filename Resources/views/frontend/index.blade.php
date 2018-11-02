@@ -77,7 +77,7 @@
 
                     </div>
                     <div class="col-md-5 col-lg-4">
-                        @include('iplaces::frontend.partials.filters')
+                        @include('iperformers::frontend.partials.filters')
                     </div>
                 </div>
             </div>
