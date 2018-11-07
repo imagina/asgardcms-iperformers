@@ -1,10 +1,10 @@
-@if(isset($performer->options->video)&& !empty($performer->options->video))
+@if(isset($performer->options->videos)&& !empty($performer->options->videos))
 <div class="gallery-video mb-4">
     <p class="text-primary sub-title">Video</p>
     <div class="owl-carousel owl-theme">
         <div class="item">
             <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="{{$performer->options->video??''}}" allowfullscreen></iframe>
+                <iframe class="embed-responsive-item" src="{{youtubeID($performer->options->videos) ??''}}" allowfullscreen></iframe>
             </div>
         </div>
     </div>

@@ -2,10 +2,12 @@
 <div class="gallery-img mb-4">
     <div class="owl-carousel owl-theme">
 
-            @foreach($performer->gallery as $index => $images)
+            @foreach($performer->gallery as $index => $image)
                 <div class="item">
-                    <img class="img-fluid w-100" data-fancybox="gallery" src="{{ $image }}"
+                  {{-- <a href="{{asset($image)}}" data-fancybox="gallery">--}}
+                        <img class="img-fluid w-100" data-fancybox="gallery" src="{{url($image) }}"
                          alt="{{$performer->title}}-{{$index}}">
+                   {{-- </a>--}}
                 </div>
             @endforeach
 
@@ -14,6 +16,8 @@
 @endif
 
 @section('scripts')
+@parent
+
     <script>
         $(document).ready(function () {
             var owl = $('.gallery-img .owl-carousel');
@@ -43,6 +47,6 @@
         });
     </script>
 
-    @parent
+
 
 @stop

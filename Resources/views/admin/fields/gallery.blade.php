@@ -3,6 +3,16 @@
     <?php $rand = str_random(5);?>
     @push('left_fields')
         <input type="hidden" id="{{$field['name']}}" name="{{$field['name']}}" value="{{$rand}}">
+        <!--
+        dfdsfdsf
+        sdfdsf
+        sfddsfs
+        sfsdfds
+        sfdsdfs
+        sfsdfds
+        sdfdsfs
+
+        -->
     @endpush
 @else
     <?php $rand = $entity->id;?>
