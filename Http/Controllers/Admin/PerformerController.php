@@ -70,8 +70,9 @@ class PerformerController extends AdminBaseController
         $users = $this->user->all();
         $genres = $this->genre->all();
         $services = $this->service->all();
+        $related=$this->performer->all();
       $cities = $this->city->whereByCountry(48);
-        return view('iperformers::admin.performers.create', compact('types', 'statuses', 'users', 'genres', 'services','cities'));
+        return view('iperformers::admin.performers.create', compact('related','types', 'statuses', 'users', 'genres', 'services','cities'));
     }
 
     /**
@@ -84,6 +85,7 @@ class PerformerController extends AdminBaseController
     {
 
         try {
+
              $this->performer->create($request->all());
 
             return redirect()->route('admin.iperformers.performer.index')
@@ -108,8 +110,9 @@ class PerformerController extends AdminBaseController
         $users = $this->user->all();
         $genres = $this->genre->all();
         $services = $this->service->all();
+        $related=$this->performer->all();
        $cities = $this->city->all();
-        return view('iperformers::admin.performers.edit', compact('performer', 'statuses', 'types', 'users', 'genres', 'services','cities'));
+        return view('iperformers::admin.performers.edit', compact('related','performer', 'statuses', 'types', 'users', 'genres', 'services','cities'));
     }
 
     /**
@@ -127,7 +130,6 @@ class PerformerController extends AdminBaseController
             } else {
                 $options = array();
             }
-
 
             isset($request->mainimage) ? $options["mainimage"] = saveImage($request['mainimage'], "assets/iperformers/performer/" . $performer->id . ".jpg") : false;
 
@@ -167,33 +169,40 @@ class PerformerController extends AdminBaseController
 
     public function galleryStore(Request $request)
     {
-        $original_filename = $request->file('file')->getClientOriginalName();
+        try{
+            $original_filename = $request->file('file')->getClientOriginalName();
 
-        $idperformer = $request->input('idedit');
-        $extension = $request->file('file')->getClientOriginalExtension();
-        $allowedextensions = array('JPG', 'JPEG', 'PNG', 'GIF');
+            $idperformer = $request->input('idedit');
+            $extension = $request->file('file')->getClientOriginalExtension();
+            $allowedextensions = array('JPG', 'JPEG', 'PNG', 'GIF');
 
-        if (!in_array(strtoupper($extension), $allowedextensions)) {
-            return 0;
+            if (!in_array(strtoupper($extension), $allowedextensions)) {
+                return 0;
+            }
+            $disk = 'publicmedia';
+            $image = \Image::make($request->file('file'));
+            $name = str_slug(str_replace('.' . $extension, '', $original_filename), '-');
+
+
+            $image->resize(config('asgard.performers.config.imagesize.width'), config('asgard.iperformers.config.imagesize.height'), function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+
+            if (config('asgard.iperformers.config.watermark.activated')) {
+                $image->insert(config('asgard.iperformers.config.watermark.url'), config('asgard.iperformers.config.watermark.position'), config('asgard.iperformers.config.watermark.x'), config('asgard.iperformers.config.watermark.y'));
+            }
+            $nameimag = $name . '.' . $extension;
+            $destination_path = 'assets/iperformers/performer/gallery/' . $idperformer . '/' . $nameimag;
+
+            \Storage::disk($disk)->put($destination_path, $image->stream($extension, '100'));
+
+            return array('direccion' => $destination_path);
         }
-        $disk = 'publicmedia';
-        $image = \Image::make($request->file('file'));
-        $name = str_slug(str_replace('.' . $extension, '', $original_filename), '-');
-
-
-        $image->resize(config('asgard.performers.config.imagesize.width'), config('asgard.iperformers.config.imagesize.height'), function ($constraint) {
-            $constraint->upsize();
-        });
-
-        if (config('asgard.iperformers.config.watermark.activated')) {
-            $image->insert(config('asgard.iperformers.config.watermark.url'), config('asgard.iperformers.config.watermark.position'), config('asgard.iperformers.config.watermark.x'), config('asgard.iperformers.config.watermark.y'));
+        catch (\Exception $e){
+            return $e->getMessage();
         }
-        $nameimag = $name . '.' . $extension;
-        $destination_path = 'assets/iperformers/performer/gallery/' . $idperformer . '/' . $nameimag;
 
-        \Storage::disk($disk)->put($destination_path, $image->stream($extension, '100'));
-
-        return array('direccion' => $destination_path);
     }
 
     public function galleryDelete(Request $request)

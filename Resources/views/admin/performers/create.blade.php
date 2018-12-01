@@ -129,7 +129,7 @@
                             <label for="cities"><strong>{{trans('iperformers::genres.form.principal')}}</strong></label>
                             <select class="form-control" name="city_id" id="city_id">
                                 @foreach ($cities as $city)
-                                    <option value="{{$city->id}}" {{ old('city_id', 0) == $city->id ? 'selected' : '' }}> {{$city->name}}
+                                    <option value="{{$city->id}}" {{ old('city_id', 0) == $city->id ? 'selected' : '' }}> {{$city->translate('en')->name}}
                                     </option>
                                 @endforeach
                             </select><br>
@@ -238,7 +238,23 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="col-xs-12 ">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <label>{{trans('iperformers::services.form.related')}}</label>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            @include('iperformers::admin.fields.checklist.related.parent')
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         @stack('left_fields')

@@ -208,6 +208,7 @@
                         </div>
                         <div class="box-body">
                             <div class='form-group{{ $errors->has("options.videos") ? ' has-error' : '' }}'>
+                                {{dd($performer->options->videos)}}
                                 <?php $oldVideo = $performer->options->videos ? $performer->options->videos : '' ?>
                                 {!! Form::label("options[videos]", trans('iperformers::performers.form.videos')) !!}
                                 {!! Form::textarea("options[videos]", old("options.videos",$oldVideo), ['class' => 'form-control','rows'=>2, 'placeholder' => trans('iperformers::performers.form.videos')]) !!}
@@ -234,6 +235,23 @@
                                     </option>
                                 @endforeach
                             </select><br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 ">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <label>{{trans('iperformers::services.form.related')}}</label>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            @include('iperformers::admin.fields.checklist.related.parent')
                         </div>
                     </div>
                 </div>

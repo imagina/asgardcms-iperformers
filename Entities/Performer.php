@@ -44,6 +44,10 @@ class Performer extends Model
     {
         return $this->belongsTo(Type::class,'type_id');
     }
+    public function Related()
+    {
+        return $this->belongsToMany(Performer::class, 'iperformers_related_performer','related_id');
+    }
     public function types()
     {
         return $this->belongsToMany(Type::class, 'iperformers_performer_type');

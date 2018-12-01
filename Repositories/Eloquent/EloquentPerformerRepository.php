@@ -136,6 +136,7 @@ class EloquentPerformerRepository extends EloquentBaseRepository implements Perf
         event(new PerformerWasCreated($performer, $data));
         $performer->types()->sync(array_get($data, 'types', []));
         $performer->services()->sync(array_get($data, 'services', []));
+        $performer->related()->sync(array_get($data, 'related', []));
         return $this->find($performer->id);
     }
 
@@ -144,6 +145,7 @@ class EloquentPerformerRepository extends EloquentBaseRepository implements Perf
         $model->update($data);
         $model->types()->sync(array_get($data, 'types', []));
         $model->services()->sync(array_get($data, 'services', []));
+        $model->related()->sync(array_get($data, 'related', []));
         return $model;
     }
 
