@@ -1,4 +1,4 @@
-@if(isset($performer->gallery))
+@if(isset($performer->gallery)&&count($performer->gallery))
 <div class="gallery-img mb-4">
     <div class="owl-carousel owl-theme">
 

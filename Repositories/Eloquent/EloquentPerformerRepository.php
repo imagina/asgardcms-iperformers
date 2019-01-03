@@ -2,12 +2,12 @@
 
 namespace Modules\Iperformers\Repositories\Eloquent;
 
+use Illuminate\Database\Eloquent\Builder;
 use Modules\Core\Repositories\Eloquent\EloquentBaseRepository;
 use Modules\Iperformers\Entities\Status;
 use Modules\Iperformers\Events\PerformerWasCreated;
 use Modules\Iperformers\Repositories\Collection;
 use Modules\Iperformers\Repositories\PerformerRepository;
-use Illuminate\Database\Eloquent\Builder;
 
 
 class EloquentPerformerRepository extends EloquentBaseRepository implements PerformerRepository
@@ -96,13 +96,10 @@ class EloquentPerformerRepository extends EloquentBaseRepository implements Perf
         }
 
         /*=== REQUEST ===*/
-        if ($page) {//Return request with pagination
-            $take ? true : $take = 12; //If no specific take, query default take is 12
-            return $query->paginate($take);
-        } else {//Return request without pagination
-            $take ? $query->take($take) : false; //Set parameter take(limit) if is requesting
-            return $query->get();
-        }
+
+        $take ? true : $take = 12; //If no specific take, query default take is 12
+        return $query->paginate($take);
+
     }
 
     public function show($param, $include)
@@ -157,7 +154,7 @@ class EloquentPerformerRepository extends EloquentBaseRepository implements Perf
         if (method_exists($this->model, 'translations')) {
             return $this->model->whereHas('translations', function (Builder $q) use ($slug) {
                 $q->where('slug', $slug);
-            })->with('types', 'city', 'type','translations')->first();
+            })->with('types', 'city', 'type', 'translations')->first();
         }
 
         return $this->model->with('types', 'city', 'type')->where('slug', $slug)->first();
@@ -165,7 +162,7 @@ class EloquentPerformerRepository extends EloquentBaseRepository implements Perf
 
     public function whereType($id)
     {
-         is_array($id) ? true : $id = [$id];
+        is_array($id) ? true : $id = [$id];
         $query = $this->model->with('city', 'type');
         $query->whereHas('types', function (Builder $q) use ($id) {
             $q->whereIn('type_id', $id);

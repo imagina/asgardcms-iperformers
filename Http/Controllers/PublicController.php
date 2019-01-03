@@ -37,7 +37,6 @@ class PublicController extends BasePublicController
         $oldGenre=null;
         if ((isset($request->types) && !empty($request->types))||(isset($request->services) && !empty($request->services))||(isset($request->genres) && !empty($request->genres)) ) {
             $filter=['types'=>$request->types,"services"=>$request->services, "genres"=>$request->genres];
-
             $performers = $this->performer->wherebyFilter($request->page,$take=12, json_decode(json_encode($filter)), $include=null);
             $oldTyp=$request->types;
             $oldServ=$request->services;

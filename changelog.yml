@@ -1,5 +1,9 @@
 url: https://github.com/imagina/asgardcms-iperformers
 versions:
+      "0.1.4":
+          changed:
+            - Public Controller
+            - Index EloquentPerformesRepositories
       "0.1.3":
           added:
             - preformers related

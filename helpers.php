@@ -1,4 +1,87 @@
 <?php
+use Modules\Iperformers\Entities\Performer;
+
+
+if (! function_exists('get_performers')) {
+
+  function get_performers($options=array())
+  {
+    $default_options = array(
+
+      'categories' => null,
+      'users' => null, //usuario o usuarios que desea llamar
+      'include' => array(),//id de place a para incluir en una consulta
+      'exclude' => array(),// place, categorias o usuarios, que desee excluir de una consulta metodo de llmado tour=>'', places=>'' , users=>''
+      'exclude_tours' => null,// categoria o categorias que desee Excluir
+      'exclude_users' => null, //usuario o usuarios que desea Excluir
+      'take' => 5, //Numero de places a obtener,
+      'skip' => 0, //Omitir Cuantos place a llamar
+      'order' => 'desc',//orden de llamado
+    );
+
+    $options = array_merge($default_options, $options);
+
+    $performers = Performer::query()->with(['genre']);
+
+    $performers->take($options['take']);
+
+    return $performers->get();
+
+
+/*
+
+    $places = PerformerRepository::with(['user','categories']);
+
+    if (!empty($options['categories'])) {
+      $places->whereHas('categories', function ($query) use ($options) {
+        $query->whereIn('category_id', $options['categories']);
+      });
+    }
+    if (!empty($options['tags'])) {
+      $places->whereHas('tags', function ($query) use ($options) {
+        $query->whereIn('tag_id', $options['tags']);
+      });
+    }
+    if (!empty($options['users'])) {
+      $places->whereHas('user', function ($query) use ($options) {
+        $query->whereIn('user_id', $options['users']);
+      });
+    }
+    if (!empty($options['include'])) {
+      $places->whereIn('id', $options['include']);
+    }
+    if (!empty($options['exclude'])) {
+      $places->whereNotIn('id', $options['exclude']);
+    }
+    if (isset($options['exclude_tours'])) {
+      $places->whereHas('tours', function ($query) use ($options) {
+        $query->whereNotIn('tour_id', $options['exclude_tours']);
+      });
+    }
+    if (isset($options['exclude_users'])) {
+      $places->whereHas('user', function ($query) use ($options) {
+        $query->whereNotIn('user_id', $options['exclude_users']);
+      });
+    }
+
+    $places->whereStatus($options['status'])
+      ->skip($options['skip'])
+      ->take($options['take']);
+
+    /*if(!empty($options['business_status_order'])) {
+        $places->orderBy('business_status', $options['business_status_order']);
+    } else {
+        $places->orderBy('business_status', 'ASC');
+    }*/
+
+    /*if($options['order']=='RAND') {
+      $places->inRandomOrder();
+    } else {
+      $places->orderBy('created_at', $options['order']);
+    }
+    return $places->get();*/
+  }
+}
 
 if (!function_exists('saveImage')) {
 
@@ -81,3 +164,5 @@ if (!function_exists('saveImage')) {
 
     }
 }
+
+
